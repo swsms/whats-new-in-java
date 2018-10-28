@@ -12,13 +12,12 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.WebSocket;
 import java.time.Duration;
-import java.util.concurrent.CompletionStage;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 
 /**
  * Java 11 standardizes a new http client introduced in Java 9.
  * It supports HTTP/1.1, HTTP/2, WebSockets, and both sync and async requests.
+ *
  * By default the client will send requests using HTTP/2.
  * If the server does not support HTTP/2 yet, the request will be downgraded to HTTP/1.1.
  *
@@ -49,15 +48,36 @@ public class HttpClientTest {
     public void testSyncGetRequest(String url) throws InterruptedException {
         var request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
-                .GET() // default
                 .timeout(REQUEST_DURATION)
+                .GET() // default
                 .build();
 
         var httpClient = HttpClient.newHttpClient();
 
         try {
             var response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-            printResponse(response);
+            printResponse(response, false);
+        } catch (IOException e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+    }
+
+    @Test
+    public void testSyncPostRequest() throws InterruptedException {
+        var fakePostService = URI.create("https://jsonplaceholder.typicode.com/posts");
+
+        var request = HttpRequest.newBuilder()
+                .uri(fakePostService)
+                .timeout(REQUEST_DURATION)
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString("{\"title\":\"foo\", \"body\":\"bar\"}"))
+                .build();
+
+        var httpClient = HttpClient.newHttpClient();
+
+        try {
+            var response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+            printResponse(response, true);
         } catch (IOException e) {
             LOGGER.error(e.getMessage(), e);
         }
@@ -67,15 +87,14 @@ public class HttpClientTest {
     public void testAsyncGetRequest(String url) {
         var request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
-                .GET()
                 .timeout(REQUEST_DURATION)
+                .GET()
                 .build();
 
         var httpClient = HttpClient.newHttpClient();
 
-        httpClient
-                .sendAsync(request, HttpResponse.BodyHandlers.ofString())
-                .thenAccept(HttpClientTest::printResponse)
+        httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+                .thenAccept(response -> printResponse(response, false))
                 .join();
     }
 
@@ -116,13 +135,30 @@ public class HttpClientTest {
                 .thenRun(() -> LOGGER.info("Sent close"));
     }
 
+    @Test
+    public void handleBodyAsReactiveStream() throws InterruptedException {
+        var request = HttpRequest.newBuilder()
+                .uri(URI.create("http://emojitrack-gostreamer.herokuapp.com/subscribe/eps"))
+                .timeout(REQUEST_DURATION)
+                .GET()
+                .build();
 
-    private static void printResponse(HttpResponse<String> response) {
+        var httpClient = HttpClient.newHttpClient();
+
+        // subscriber
+        // send async
+    }
+
+
+    private static void printResponse(HttpResponse<String> response, boolean printBody) {
         LOGGER.info("Protocol version: {}", response.version());
         LOGGER.info("Status code: {}", response.statusCode());
         response.headers()
                 .map()
                 .forEach((name, values) -> LOGGER.info(name + ": " + values));
         LOGGER.info("Body length {}", response.body().length());
+        if (printBody) {
+            LOGGER.info("Body {}", response.body());
+        }
     }
 }
