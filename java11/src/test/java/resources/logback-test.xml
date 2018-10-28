@@ -1,0 +1,10 @@
+<configuration>
+    <appender name="CA" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %class{36} %M - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <root level="TRACE">
+        <appender-ref ref="CA"/>
+    </root>
+</configuration>
