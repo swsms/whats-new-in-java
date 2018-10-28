@@ -1,6 +1,5 @@
-package org.avb.whatsnew.java11.varsinlambdas;
+package org.avb.whatsnew.java11.varinlambdaparams;
 
-import org.avb.whatsnew.java11.strings.StringsMethodsDemo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
