@@ -1,2 +1,5 @@
 # whats-new-in-java
-It demonstrates new features in Java
+This Maven-based project demonstrates new features in Java.
+
+Each module focuses on one version of the language.
+All examples are located in **test** folders.
