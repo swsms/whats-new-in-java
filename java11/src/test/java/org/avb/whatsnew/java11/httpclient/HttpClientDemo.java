@@ -30,10 +30,8 @@ import java.util.concurrent.*;
  *
  * More about HTTP/2: https://http2.github.io/faq/#what-are-the-key-differences-to-http1x
  */
-public class HttpClientTest {
-    private static final Logger LOGGER = LoggerFactory.getLogger(HttpClientTest.class);
-    private static final String LINE_SEPARATOR = "=".repeat(80);
-
+public class HttpClientDemo {
+    private static final Logger LOGGER = LoggerFactory.getLogger(HttpClientDemo.class);
     private static final Duration REQUEST_DURATION = Duration.ofSeconds(60);
 
     @DataProvider(name = "httpResourcesProvider")
