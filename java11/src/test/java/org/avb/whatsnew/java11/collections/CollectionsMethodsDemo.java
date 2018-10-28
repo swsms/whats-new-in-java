@@ -1,10 +1,8 @@
 package org.avb.whatsnew.java11.collections;
 
-import org.avb.whatsnew.java11.varinlambdaparams.VarsInLambdasDemo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
-import org.testng.collections.Lists;
 
 import java.util.*;
 
