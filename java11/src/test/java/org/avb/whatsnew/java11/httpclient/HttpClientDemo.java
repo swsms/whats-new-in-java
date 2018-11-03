@@ -6,6 +6,8 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
+import java.net.Authenticator;
+import java.net.PasswordAuthentication;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -134,7 +136,33 @@ public class HttpClientDemo {
     }
 
     @Test
-    public void handleBodyAsReactiveStream() throws InterruptedException {
+    public void testBasicAuth() throws InterruptedException {
+        var request = HttpRequest.newBuilder() // GET by default
+                .uri(URI.create("https://postman-echo.com/basic-auth"))
+                .timeout(REQUEST_DURATION)
+                .build();
+
+        var authClient = HttpClient
+                .newBuilder()
+                .authenticator(new Authenticator() {
+                    @Override
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication("postman", "password".toCharArray());
+                    }
+                })
+                .build();
+
+        try {
+            var response = authClient.send(request, HttpResponse.BodyHandlers.ofString());
+            printResponse(response, true);
+        } catch (IOException e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+    }
+
+
+    @Test
+    public void testHandleBodyAsReactiveStream() throws InterruptedException {
         var request = HttpRequest.newBuilder()
                 .uri(URI.create("http://emojitrack-gostreamer.herokuapp.com/subscribe/eps"))
                 .timeout(REQUEST_DURATION)
@@ -143,8 +171,8 @@ public class HttpClientDemo {
 
         var httpClient = HttpClient.newHttpClient();
 
-        // subscriber
-        // send async
+        // TODO subscriber
+        // TODO send async
     }
 
 
