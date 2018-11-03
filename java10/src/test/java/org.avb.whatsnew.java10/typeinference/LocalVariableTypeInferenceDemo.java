@@ -1,4 +1,4 @@
-package org.avb.whatsnew.java10.localvariables;
+package org.avb.whatsnew.java10.typeinference;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,8 +6,6 @@ import org.testng.annotations.Test;
 
 import java.io.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.TreeMap;
 
