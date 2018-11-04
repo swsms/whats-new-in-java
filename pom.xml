@@ -13,6 +13,7 @@
         <module>java11</module>
         <module>java10</module>
         <module>java9</module>
+        <module>common</module>
     </modules>
 
     <properties>
@@ -20,6 +21,16 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.avb.whatsnew</groupId>
+                <artifactId>common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>

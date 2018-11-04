@@ -11,4 +11,11 @@
 
     <artifactId>java10</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.avb.whatsnew</groupId>
+            <artifactId>common</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>
