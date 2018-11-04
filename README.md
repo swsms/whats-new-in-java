@@ -7,6 +7,6 @@ The project is based on Maven and has a classic multi-modular structure. Each mo
 It's in the phase of the active development now. You can help to add some new information with examples by doing a pull request from your fork.
 
 Follow the link depending on the verion of Java you are interested in:
-- [Java11](https://github.com/swsms/whats-new-in-java/tree/master/java11)
-- [Java10](https://github.com/swsms/whats-new-in-java/tree/master/java10)
-- [Java9](https://github.com/swsms/whats-new-in-java/tree/master/java9)
+- [Java11](https://github.com/swsms/whats-new-in-java/tree/master/java11/src/test/java/org/avb/whatsnew/java11)
+- [Java10](https://github.com/swsms/whats-new-in-java/tree/master/java10/src/test/java/org/avb/whatsnew/java10)
+- [Java9](https://github.com/swsms/whats-new-in-java/tree/master/java9/src/test/java/org/avb/whatsnew/java9)
