@@ -63,6 +63,17 @@ public class CollectionUtilityMethodsDemo {
         LOGGER.info("{}", addresses);
     }
 
+    @Test(expectedExceptions = NullPointerException.class)
+    public void testNullNotAllowed() {
+        List<Integer> digits = List.of(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, null);
+    }
+
+    @Test(expectedExceptions = UnsupportedOperationException.class)
+    public void testImmutability() {
+        List<Integer> digits = List.of(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+        digits.add(100); // it throws an exception
+    }
+
     @Test
     public void testMapOfEntries() {
         Map<String,String> emptyMap = Map.ofEntries();
