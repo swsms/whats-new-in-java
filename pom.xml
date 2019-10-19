@@ -10,6 +10,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
+        <module>java12</module>
         <module>java11</module>
         <module>java10</module>
         <module>java9</module>
@@ -18,8 +19,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>13</maven.compiler.source>
+        <maven.compiler.target>13</maven.compiler.target>
     </properties>
 
     <dependencyManagement>
@@ -62,21 +63,23 @@
         </dependency>
     </dependencies>
 
-    <!--<build>-->
-        <!--<plugins>-->
-            <!--<plugin>-->
-                <!--<groupId>org.apache.maven.plugins</groupId>-->
-                <!--<artifactId>maven-surefire-plugin</artifactId>-->
-                <!--<version>2.18.1</version>-->
-                <!--<configuration>-->
-                    <!--<systemPropertyVariables>-->
-                        <!--<org.slf4j.simpleLogger.defaultLogLevel>DEBUG</org.slf4j.simpleLogger.defaultLogLevel>-->
-                        <!--<org.slf4j.simpleLogger.showDateTime>true</org.slf4j.simpleLogger.showDateTime>-->
-                        <!--<org.slf4j.simpleLogger.showMethodName>true</org.slf4j.simpleLogger.showMethodName>-->
-                        <!--<org.slf4j.simpleLogger.dateTimeFormat>HH:mm:ss.SSS</org.slf4j.simpleLogger.dateTimeFormat>-->
-                    <!--</systemPropertyVariables>-->
-                <!--</configuration>-->
-            <!--</plugin>-->
-        <!--</plugins>-->
-    <!--</build>-->
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <compilerArgs>
+                        --enable-preview
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <argLine>--enable-preview</argLine>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
