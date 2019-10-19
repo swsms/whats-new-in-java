@@ -10,6 +10,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
+        <module>java13</module>
         <module>java12</module>
         <module>java11</module>
         <module>java10</module>
