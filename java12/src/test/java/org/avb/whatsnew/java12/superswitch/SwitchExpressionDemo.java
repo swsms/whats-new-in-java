@@ -12,7 +12,7 @@ import static org.testng.Assert.*;
  * As you remember, the old form of this statement looked old fashioned (not like in Kotlin/Scala :))
  * and, more importantly, it could lead to errors due to the lack of breaks.
  * Now, it supports multiple values in cases, allows you do not use breaks,
- * can be used an expression and has a nice arrow syntax (->) in addition to old colon (:).
+ * can be used an expression and has a nice arrow lambda-like syntax (->) in addition to old colon (:).
  */
 public class SwitchExpressionDemo {
     private static final Logger LOGGER = LoggerFactory.getLogger(SwitchExpressionDemo.class);
@@ -21,6 +21,7 @@ public class SwitchExpressionDemo {
     private int getDayNumber() {
         return 6;
     }
+
     /**
      * Here is an old switch statement which exists from beginning.
      * Just to remember.
