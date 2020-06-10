@@ -12,3 +12,4 @@ Follow the link depending on the verion of Java you are interested in:
 - [Java11](https://github.com/swsms/whats-new-in-java/tree/master/java11/src/test/java/org/avb/whatsnew/java11)
 - [Java10](https://github.com/swsms/whats-new-in-java/tree/master/java10/src/test/java/org/avb/whatsnew/java10)
 - [Java9](https://github.com/swsms/whats-new-in-java/tree/master/java9/src/test/java/org/avb/whatsnew/java9)
+- [Java8](https://github.com/swsms/whats-new-in-java/tree/master/java8/src/test/java/org/avb/whatsnew/java8)
